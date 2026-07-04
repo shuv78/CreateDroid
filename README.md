@@ -34,62 +34,49 @@ Whether you need a **calculator app** in 5 minutes or a **full e-commerce app** 
 
 ---
 
-## 📥 Installation
+## 📥 One-Click Install
 
-### Option 1: Hermes Agent (Recommended)
-If you use **Hermes Agent**, install CreateDroid as a skill:
-
+### 🚀 Hermes Agent — One Command
 ```bash
-# Clone the skill repo
-git clone https://github.com/shuv78/CreateDroid.git \
-  ~/.hermes/skills/software-development/CreateDroid
+hermes skills install https://raw.githubusercontent.com/shuv78/CreateDroid/main/SKILL.md
 ```
+That's it. Paste this in your Hermes terminal or send it in Telegram DM → skill is installed. Then just say:
 
-Then load it in any Hermes session:
-```bash
-skill_view(name='CreateDroid')
-```
+> *"Build a scanner app"*
 
-Or just tell your agent: *"I want to build an Android app"* — CreateDroid loads automatically when it detects app-building intent.
+CreateDroid loads automatically when you mention building an Android app.
 
-### Option 2: Claude Code / Cursor / Any AI Code Agent
-Add this to your `CLAUDE.md`, `.cursorrules`, or project instructions:
-
+### 🤖 Claude Code / Cursor — One Line
+Add this one line to your `CLAUDE.md` or `.cursorrules`:
 ```markdown
-# Tools
-- **CreateDroid** (https://github.com/shuv78/CreateDroid)
-  Full-stack Android app builder — create, fix, build, ship.
-  Templates: ./CreateDroid/templates/
-  Scripts: ./CreateDroid/scripts/
+- CreateDroid (https://github.com/shuv78/CreateDroid) — Android app builder
 ```
+Then tell your agent: *"Use CreateDroid to build an app"*.
 
-Then tell your agent: *"Use CreateDroid to build a scanner app"*.
-
-### Option 3: Manual (No Agent)
-Just use the templates directly — no agent required:
-
+### 👨‍💻 Manual (No Agent) — One Clone
 ```bash
 git clone https://github.com/shuv78/CreateDroid.git
 cd CreateDroid/templates/cordova-firebase
-npm install
-cordova platform add android
-# Edit the app, then...
-bash ../scripts/build-cordova.sh
+npm install && cordova platform add android
+bash ../scripts/build-cordova.sh   # APK on Desktop 🎉
 ```
 
 ---
 
 ## 🎯 In 30 Seconds
 
+### With Hermes Agent (1 command)
 ```bash
-# 1. Grab the templates
+hermes skills install https://raw.githubusercontent.com/shuv78/CreateDroid/main/SKILL.md
+```
+Then: *"Build a calculator app with bKash payment"*
+
+### Manual (copy-paste)
+```bash
 git clone https://github.com/shuv78/CreateDroid.git
 cd CreateDroid/templates/cordova-firebase
-
-# 2. Build your APK
-bash /path/to/CreateDroid/scripts/build-cordova.sh
-
-# Your APK is ready on Desktop 🎉
+npm install && cordova platform add android
+bash ../scripts/build-cordova.sh   # 🎉 APK on Desktop
 ```
 
 > **No Android Studio. No Gradle config. No Firebase setup tutorials. Just working code.**

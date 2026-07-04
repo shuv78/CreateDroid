@@ -34,6 +34,51 @@ Whether you need a **calculator app** in 5 minutes or a **full e-commerce app** 
 
 ---
 
+## 📥 Installation
+
+### Option 1: Hermes Agent (Recommended)
+If you use **Hermes Agent**, install CreateDroid as a skill:
+
+```bash
+# Clone the skill repo
+git clone https://github.com/shuv78/CreateDroid.git \
+  ~/.hermes/skills/software-development/CreateDroid
+```
+
+Then load it in any Hermes session:
+```bash
+skill_view(name='CreateDroid')
+```
+
+Or just tell your agent: *"I want to build an Android app"* — CreateDroid loads automatically when it detects app-building intent.
+
+### Option 2: Claude Code / Cursor / Any AI Code Agent
+Add this to your `CLAUDE.md`, `.cursorrules`, or project instructions:
+
+```markdown
+# Tools
+- **CreateDroid** (https://github.com/shuv78/CreateDroid)
+  Full-stack Android app builder — create, fix, build, ship.
+  Templates: ./CreateDroid/templates/
+  Scripts: ./CreateDroid/scripts/
+```
+
+Then tell your agent: *"Use CreateDroid to build a scanner app"*.
+
+### Option 3: Manual (No Agent)
+Just use the templates directly — no agent required:
+
+```bash
+git clone https://github.com/shuv78/CreateDroid.git
+cd CreateDroid/templates/cordova-firebase
+npm install
+cordova platform add android
+# Edit the app, then...
+bash ../scripts/build-cordova.sh
+```
+
+---
+
 ## 🎯 In 30 Seconds
 
 ```bash

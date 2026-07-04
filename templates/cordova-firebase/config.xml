@@ -1,0 +1,157 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.shuvalpha.myapp" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>MyApp</name>
+    <description>A full-stack Cordova Firebase application with authentication, CRUD, and real-time features.</description>
+    <author email="shuvalpha@example.com" href="https://github.com/ShuvAlpha">ShuvAlpha</author>
+
+    <content src="index.html" />
+
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+
+    <allow-navigation href="*" />
+
+    <platform name="android">
+        <allow-intent href="market:*" />
+        <icon density="ldpi" src="res/icons/android/icon-36.png" />
+        <icon density="mdpi" src="res/icons/android/icon-48.png" />
+        <icon density="hdpi" src="res/icons/android/icon-72.png" />
+        <icon density="xhdpi" src="res/icons/android/icon-96.png" />
+        <icon density="xxhdpi" src="res/icons/android/icon-144.png" />
+        <icon density="xxxhdpi" src="res/icons/android/icon-192.png" />
+        <splash density="land-ldpi" src="res/screens/android/splash-320.png" />
+        <splash density="land-mdpi" src="res/screens/android/splash-480.png" />
+        <splash density="land-hdpi" src="res/screens/android/splash-800.png" />
+        <splash density="land-xhdpi" src="res/screens/android/splash-1280.png" />
+        <splash density="port-ldpi" src="res/screens/android/splash-200.png" />
+        <splash density="port-mdpi" src="res/screens/android/splash-320.png" />
+        <splash density="port-hdpi" src="res/screens/android/splash-480.png" />
+        <splash density="port-xhdpi" src="res/screens/android/splash-720.png" />
+        <preference name="AndroidWindowSplashScreenAnimatedIcon" value="res/icons/android/icon-192.png" />
+        <preference name="AndroidWindowSplashScreenBackground" value="#0D1117" />
+        <preference name="AndroidWindowSplashScreenAnimationDuration" value="1000" />
+        <preference name="AndroidWindowSplashScreenBrandingImage" value="res/icons/android/icon-72.png" />
+        <preference name="AndroidWindowSplashScreenIcon" value="res/icons/android/icon-192.png" />
+        <preference name="AndroidInsecureFileModeEnabled" value="true" />
+        <preference name="loadUrlTimeoutValue" value="7000" />
+        <preference name="scheme" value="https" />
+        <preference name="hostname" value="localhost" />
+        <preference name="OverrideUserAgent" value="" />
+        <preference name="AndroidPersistentFileLocation" value="Compatibility" />
+        <preference name="AndroidExtraFilesystemPrefix" value="" />
+        <preference name="GradleVersion" value="7.6" />
+        <preference name="AndroidGradlePluginVersion" value="7.4.2" />
+        <preference name="AndroidKotlinVersion" value="1.9.0" />
+        <preference name="AndroidXExactTarget" value="true" />
+        <preference name="AndroidXEnabled" value="true" />
+        <preference name="BuildConfiguration" value="release" />
+        <preference name="GradlePluginKotlinEnabled" value="true" />
+        <preference name="GradlePluginGoogleServicesEnabled" value="true" />
+        <preference name="GradlePluginGoogleServicesVersion" value="4.4.1" />
+        <preference name="gradleExtraArgs" value="--warning-mode=all" />
+        <preference name="EnforceBuddy" value="false" />
+        <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
+            <application android:usesCleartextTraffic="true" />
+        </edit-config>
+    </platform>
+
+    <platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+        <icon height="57" src="res/icons/ios/icon-57.png" width="57" />
+        <icon height="114" src="res/icons/ios/icon-114.png" width="114" />
+        <icon height="120" src="res/icons/ios/icon-120.png" width="120" />
+        <icon height="144" src="res/icons/ios/icon-144.png" width="144" />
+        <icon height="152" src="res/icons/ios/icon-152.png" width="152" />
+        <icon height="167" src="res/icons/ios/icon-167.png" width="167" />
+        <icon height="180" src="res/icons/ios/icon-180.png" width="180" />
+        <icon height="1024" src="res/icons/ios/icon-1024.png" width="1024" />
+        <splash height="480" src="res/screens/ios/splash-320x480.png" width="320" />
+        <splash height="960" src="res/screens/ios/splash-640x960.png" width="640" />
+        <splash height="1136" src="res/screens/ios/splash-640x1136.png" width="640" />
+        <splash height="1334" src="res/screens/ios/splash-750x1334.png" width="750" />
+        <splash height="2208" src="res/screens/ios/splash-1242x2208.png" width="1242" />
+        <splash height="2208" src="res/screens/ios/splash-2208x1242.png" width="2208" />
+        <splash height="2436" src="res/screens/ios/splash-1125x2436.png" width="1125" />
+        <splash height="2436" src="res/screens/ios/splash-2436x1125.png" width="2436" />
+        <splash height="2732" src="res/screens/ios/splash-2048x2732.png" width="2048" />
+        <splash height="2732" src="res/screens/ios/splash-2732x2048.png" width="2732" />
+        <preference name="Hostname" value="localhost" />
+        <preference name="iosPersistentFileLocation" value="Library" />
+        <preference name="scheme" value="app" />
+        <preference name="WKWebViewOnly" value="true" />
+        <preference name="UIStatusBarHidden" value="false" />
+        <preference name="UIStatusBarStyle" value="lightcontent" />
+        <preference name="Suppresses3DTouchGesture" value="false" />
+        <preference name="SuppressesLongPressGesture" value="false" />
+        <preference name="SuppressesDTouchGesture" value="false" />
+        <preference name="BackupWebStorage" value="cloud" />
+        <preference name="CordovaWebViewEngine" value="WKWebView" />
+        <preference name="EnforceBuddy" value="false" />
+    </platform>
+
+    <plugin name="cordova-plugin-camera" spec="^7.0.0" />
+    <plugin name="cordova-plugin-geolocation" spec="^5.0.0" />
+    <plugin name="cordova-plugin-file" spec="^8.0.0" />
+    <plugin name="cordova-plugin-file-transfer" spec="^2.0.0" />
+    <plugin name="cordova-plugin-splashscreen" spec="^6.0.1" />
+    <plugin name="cordova-plugin-statusbar" spec="^4.0.0" />
+    <plugin name="cordova-plugin-inappbrowser" spec="^6.0.0" />
+    <plugin name="cordova-plugin-network-information" spec="^3.0.0" />
+    <plugin name="cordova-plugin-device" spec="^3.0.0" />
+    <plugin name="cordova-plugin-vibration" spec="^3.1.1" />
+    <plugin name="cordova-plugin-android-permissions" spec="^1.1.5" />
+    <plugin name="cordova-plugin-media-capture" spec="^4.1.0" />
+    <plugin name="cordova-plugin-dialogs" spec="^2.0.2" />
+    <plugin name="cordova-plugin-globalization" spec="^1.11.0" />
+    <plugin name="cordova-plugin-whitelist" spec="^1.3.5" />
+    <plugin name="cordova-clipboard" spec="^1.3.0" />
+    <plugin name="cordova-plugin-app-version" spec="^1.0.1" />
+    <plugin name="phonegap-plugin-barcodescanner" spec="^8.1.0" />
+    <plugin name="cordova-plugin-googleplus" spec="^8.5.2" />
+    <plugin name="cordova-plugin-fcm-with-dependecy-updated" spec="^11.0.0" />
+    <plugin name="cordova-plugin-local-notification" spec="^0.9.0-beta.2" />
+    <plugin name="cordova-plugin-nativestorage" spec="^2.3.2" />
+    <plugin name="cordova-plugin-androidx" spec="^3.0.0" />
+    <plugin name="cordova-plugin-androidx-adapter" spec="^1.1.3" />
+    <plugin name="cordova-plugin-advanced-http" spec="^3.3.1" />
+
+    <preference name="KeepRunning" value="true" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="ShowSplashScreenSpinner" value="false" />
+    <preference name="AutoHideSplashScreen" value="true" />
+    <preference name="FadeSplashScreen" value="true" />
+    <preference name="FadeSplashScreenDuration" value="300" />
+    <preference name="SplashShowOnlyFirstTime" value="false" />
+    <preference name="SplashScreenDelay" value="3000" />
+    <preference name="Orientation" value="portrait" />
+    <preference name="android-minSdkVersion" value="24" />
+    <preference name="android-targetSdkVersion" value="34" />
+    <preference name="android-compileSdkVersion" value="34" />
+    <preference name="android-maxSdkVersion" value="34" />
+    <preference name="target-device" value="universal" />
+    <preference name="fullscreen" value="false" />
+    <preference name="BackgroundColor" value="#0D1117" />
+    <preference name="KeyboardDisplayRequiresUserAction" value="false" />
+    <preference name="AllowInlineMediaPlayback" value="false" />
+    <preference name="Allow3DTransform" value="true" />
+    <preference name="AllowBackForwardNavigationGestures" value="true" />
+    <preference name="MediaPlaybackAllowsAirPlay" value="true" />
+    <preference name="MediaPlaybackRequiresUserAction" value="false" />
+    <preference name="SuppressesIncrementalRendering" value="false" />
+    <preference name="SuppressesLongPressGesture" value="true" />
+    <preference name="GapBetweenPages" value="0" />
+    <preference name="PageLength" value="0" />
+    <preference name="PaginationBreakingMode" value="page" />
+    <preference name="PaginationMode" value="unpaginated" />
+
+    <feature name="StatusBar">
+        <param name="ios-package" value="CDVStatusBar" />
+        <param name="onload" value="true" />
+    </feature>
+</widget>

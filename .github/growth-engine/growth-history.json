@@ -1,0 +1,28 @@
+{
+  "repo": "shuv78/CreateDroid",
+  "created": "2026-07-05T00:00:00Z",
+  "entries": [
+    {
+      "timestamp": "2026-07-05T00:00:00Z",
+      "repo": "shuv78/CreateDroid",
+      "stats": {
+        "stars": 0,
+        "forks": 0,
+        "open_issues": 0,
+        "watchers": 1,
+        "language": "JavaScript",
+        "topics": ["android", "cordova", "capacitor", "apk-builder", "mobile-app", "react", "firebase", "supabase", "app-template", "android-app-generator"],
+        "created_at": "2026-07-05T00:00:00Z",
+        "pushed_at": "2026-07-05T00:00:00Z",
+        "updated_at": "2026-07-05T00:00:00Z",
+        "description": "Build Android apps in 2 commands. 37 app types, 18 features, 4 themes. Cordova + Capacitor templates. Bug learning, auto-build, Telegram delivery."
+      },
+      "traffic": {
+        "clones": {"count": 0, "uniques": 0},
+        "views": {"count": 0, "uniques": 0}
+      },
+      "referrers": [],
+      "search_ranking": []
+    }
+  ]
+}

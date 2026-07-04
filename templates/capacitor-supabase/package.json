@@ -1,0 +1,47 @@
+{
+  "name": "app-fullstack-roles",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Capacitor + Supabase full-stack mobile app template",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "cap:sync": "npx cap sync",
+    "cap:copy": "npx cap copy",
+    "cap:open:android": "npx cap open android",
+    "cap:open:ios": "npx cap open ios",
+    "release:android": "npm run build && npx cap sync android && cd android && ./gradlew assembleRelease"
+  },
+  "dependencies": {
+    "@capacitor/core": "^6.2.1",
+    "@capacitor/status-bar": "^6.0.2",
+    "@capacitor/splash-screen": "^6.0.3",
+    "@capacitor/app": "^6.0.2",
+    "@capacitor/clipboard": "^6.0.2",
+    "@capacitor/device": "^6.0.2",
+    "@capacitor/haptics": "^6.0.2",
+    "@capacitor/keyboard": "^6.0.2",
+    "@capacitor/local-notifications": "^6.1.2",
+    "@capacitor/preferences": "^6.0.2",
+    "@capacitor/share": "^6.0.2",
+    "@capacitor/dialog": "^6.0.2",
+    "@capacitor/toast": "^6.0.2",
+    "@capacitor/push-notifications": "^6.1.1",
+    "@capacitor/filesystem": "^6.0.2",
+    "@supabase/supabase-js": "^2.49.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.30.0",
+    "html5-qrcode": "^2.3.8",
+    "jspdf": "^2.5.2",
+    "html2canvas": "^1.4.1",
+    "uuid": "^11.1.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "vite": "^6.1.0",
+    "eslint": "^9.22.0"
+  }
+}

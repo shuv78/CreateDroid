@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' 'unsafe-eval'; script-src * 'unsafe-inline' 'unsafe-eval'; connect-src * 'unsafe-inline'; img-src * data: blob: filesystem:; media-src * data: blob: filesystem:; style-src * 'unsafe-inline'; font-src * data:;" />
+
+    <title>MyApp</title>
+
+    <!-- Theme CSS (overridden by settings) -->
+    <link id="theme-link" rel="stylesheet" href="css/theme-dark.css" />
+
+    <!-- Firebase App (compat) -->
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-storage-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-messaging-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-analytics-compat.js"></script>
+
+    <!-- React UMD -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+
+    <!-- html5-qrcode for scanner -->
+    <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+
+    <style>
+        /* Critical inline styles to prevent FOUC */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { 
+            height: 100%; 
+            width: 100%; 
+            overflow: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background-color: #0D1117;
+            color: #E6EDF3;
+            touch-action: manipulation;
+        }
+        body { 
+            display: flex; 
+            flex-direction: column;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+        #app-root {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+        .screen {
+            display: none;
+            flex-direction: column;
+            height: 100%;
+            width: 100%;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            position: absolute;
+            top: 0; left: 0;
+            background: inherit;
+        }
+        .screen.active {
+            display: flex;
+        }
+        .screen.screen-transition {
+            animation: screenFadeIn 0.25s ease-out;
+        }
+        @keyframes screenFadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        #splash-screen {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #0D1117;
+            z-index: 9999;
+            transition: opacity 0.4s ease;
+        }
+        #splash-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .splash-logo {
+            width: 96px; height: 96px;
+            border-radius: 24px;
+            background: linear-gradient(135deg, #58A6FF, #1F6FEB);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: #fff;
+            margin-bottom: 24px;
+            box-shadow: 0 8px 32px rgba(31, 111, 235, 0.3);
+        }
+        .splash-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #E6EDF3;
+            margin-bottom: 8px;
+        }
+        .splash-subtitle {
+            font-size: 14px;
+            color: #8B949E;
+        }
+        .splash-loader {
+            margin-top: 32px;
+            width: 48px; height: 48px;
+            border: 3px solid #21262D;
+            border-top-color: #58A6FF;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        #error-reporter {
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            background: #DA3633;
+            color: #fff;
+            padding: 12px 16px;
+            font-size: 13px;
+            z-index: 99999;
+            display: none;
+            box-shadow: 0 -4px 12px rgba(218,54,51,0.3);
+        }
+        #error-reporter .error-close {
+            float: right;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 18px;
+            cursor: pointer;
+            padding: 0 4px;
+        }
+        #toast-container {
+            position: fixed;
+            top: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 99998;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            pointer-events: none;
+            max-width: 90%;
+        }
+        .toast {
+            background: #21262D;
+            color: #E6EDF3;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-size: 14px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            pointer-events: auto;
+            animation: toastIn 0.3s ease-out;
+            border: 1px solid #30363D;
+        }
+        .toast.toast-success { border-color: #3FB950; }
+        .toast.toast-error { border-color: #DA3633; }
+        .toast.toast-info { border-color: #58A6FF; }
+        @keyframes toastIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Splash Screen -->
+    <div id="splash-screen">
+        <div class="splash-logo">&#x1F310;</div>
+        <div class="splash-title">MyApp</div>
+        <div class="splash-subtitle">Powered by Firebase &amp; Cordova</div>
+        <div class="splash-loader"></div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toast-container"></div>
+
+    <!-- Error Reporter -->
+    <div id="error-reporter">
+        <button class="error-close" onclick="this.parentElement.style.display='none'">&times;</button>
+        <span id="error-message">An error occurred.</span>
+    </div>
+
+    <!-- App Root -->
+    <div id="app-root"></div>
+
+    <!-- Shared Scripts -->
+    <script src="shared/version.js"></script>
+    <script src="shared/utils.js"></script>
+    <script src="shared/auth.js"></script>
+    <script src="shared/db-firebase.js"></script>
+    <script src="shared/app.js"></script>
+
+    <!-- Screen Scripts -->
+    <script src="screens/onboarding.js"></script>
+    <script src="screens/login.js"></script>
+    <script src="screens/dashboard.js"></script>
+    <script src="screens/list.js"></script>
+    <script src="screens/form.js"></script>
+    <script src="screens/detail.js"></script>
+    <script src="screens/profile.js"></script>
+    <script src="screens/settings.js"></script>
+    <script src="screens/about.js"></script>
+    <script src="screens/privacy.js"></script>
+    <script src="screens/terms.js"></script>
+
+    <!-- Feature Scripts -->
+    <script src="features/maps.js"></script>
+    <script src="features/payment.js"></script>
+    <script src="features/camera.js"></script>
+    <script src="features/scanner.js"></script>
+    <script src="features/chat.js"></script>
+    <script src="features/notifications.js"></script>
+    <script src="features/dark-mode.js"></script>
+    <script src="features/export.js"></script>
+
+    <!-- Bootstrap -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Show error if Firebase fails to load
+            if (typeof firebase === 'undefined') {
+                showError('Firebase SDK failed to load. Check internet connection.');
+                return;
+            }
+            // Initialize app after a brief delay for splash
+            setTimeout(function() {
+                try {
+                    if (typeof App !== 'undefined' && App.init) {
+                        App.init();
+                    } else {
+                        showError('App core failed to load. Check shared/ files.');
+                    }
+                } catch(e) {
+                    showError('App init error: ' + e.message);
+                }
+            }, 1200);
+        });
+
+        // Global error handler
+        window.onerror = function(msg, url, line, col, error) {
+            showError(msg + ' (' + url + ':' + line + ')');
+            return true;
+        };
+
+        // Unhandled promise rejection
+        window.addEventListener('unhandledrejection', function(e) {
+            showError('Unhandled: ' + (e.reason ? e.reason.message || e.reason : 'Promise rejected'));
+        });
+
+        function showError(msg) {
+            var reporter = document.getElementById('error-reporter');
+            var msgEl = document.getElementById('error-message');
+            if (reporter && msgEl) {
+                msgEl.textContent = msg;
+                reporter.style.display = 'block';
+                setTimeout(function() { reporter.style.display = 'none'; }, 8000);
+            }
+        }
+    </script>
+</body>
+</html>

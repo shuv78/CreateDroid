@@ -1,0 +1,38 @@
+{
+  "android": {
+    "debug": {
+      "keystore": "../android.keystore",
+      "storePassword": "android",
+      "alias": "myappdebugkey",
+      "password": "android",
+      "keystoreType": ""
+    },
+    "release": {
+      "keystore": "../myapp-release-key.keystore",
+      "storePassword": "",
+      "alias": "myapp",
+      "password": "",
+      "keystoreType": ""
+    }
+  },
+  "ios": {
+    "debug": {
+      "codeSignIdentity": "iPhone Developer",
+      "developmentTeam": "",
+      "packageType": "development",
+      "automaticProvisioning": true,
+      "buildFlag": [
+        "-UseModernBuildSystem=YES"
+      ]
+    },
+    "release": {
+      "codeSignIdentity": "iPhone Distribution",
+      "developmentTeam": "",
+      "packageType": "app-store",
+      "automaticProvisioning": true,
+      "buildFlag": [
+        "-UseModernBuildSystem=YES"
+      ]
+    }
+  }
+}

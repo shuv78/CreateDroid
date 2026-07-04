@@ -21,6 +21,8 @@
     <img src="https://img.shields.io/badge/React-18-61DAFB?style=flat-square&logo=react&logoColor=white" alt="React">
     <img src="https://img.shields.io/badge/Firebase-FFCA28?style=flat-square&logo=firebase&logoColor=black" alt="Firebase">
     <img src="https://img.shields.io/badge/Supabase-3ECF8E?style=flat-square&logo=supabase&logoColor=white" alt="Supabase">
+    <br>
+    <strong>🔧 One Hermes command → Working APK</strong>
   </p>
 </div>
 
@@ -28,56 +30,42 @@
 
 ## ✨ What is CreateDroid?
 
-**CreateDroid is a skill + template system** that lets you build production-ready Android APKs from scratch — coding, fixing, building, and shipping — without ever opening Android Studio.
+**CreateDroid is a Hermes Agent skill** that builds production-ready Android APKs from scratch — coding, fixing, building, and shipping — all through natural language. No Android Studio required.
+
+Once installed via one command (`hermes skills install ...`), just tell Hermes what app you need and it handles the rest.
 
 Whether you need a **calculator app** in 5 minutes or a **full e-commerce app** with payment, maps, notifications, and offline sync — CreateDroid has ready-made templates, scripts, and workflows.
 
 ---
 
-## 📥 One-Click Install
+## 📥 One-Click Install (for Hermes Agent)
 
-### 🚀 Hermes Agent — One Command
 ```bash
 hermes skills install https://raw.githubusercontent.com/shuv78/CreateDroid/main/SKILL.md
 ```
-That's it. Paste this in your Hermes terminal or send it in Telegram DM → skill is installed. Then just say:
 
-> *"Build a scanner app"*
+That's it. One command. Paste it in your Hermes terminal or send it in Telegram DM — skill is installed. Then just say:
 
-CreateDroid loads automatically when you mention building an Android app.
+> *"Build a scanner app"* or *"Build an e-commerce app with bKash payment"*
 
-### 🤖 Claude Code / Cursor — One Line
-Add this one line to your `CLAUDE.md` or `.cursorrules`:
-```markdown
-- CreateDroid (https://github.com/shuv78/CreateDroid) — Android app builder
-```
-Then tell your agent: *"Use CreateDroid to build an app"*.
+CreateDroid loads automatically whenever you mention building an Android app.
 
-### 👨‍💻 Manual (No Agent) — One Clone
+### 📦 Manual (No Agent)
 ```bash
 git clone https://github.com/shuv78/CreateDroid.git
 cd CreateDroid/templates/cordova-firebase
 npm install && cordova platform add android
-bash ../scripts/build-cordova.sh   # APK on Desktop 🎉
+bash ../scripts/build-cordova.sh
 ```
 
 ---
 
 ## 🎯 In 30 Seconds
 
-### With Hermes Agent (1 command)
 ```bash
 hermes skills install https://raw.githubusercontent.com/shuv78/CreateDroid/main/SKILL.md
 ```
-Then: *"Build a calculator app with bKash payment"*
-
-### Manual (copy-paste)
-```bash
-git clone https://github.com/shuv78/CreateDroid.git
-cd CreateDroid/templates/cordova-firebase
-npm install && cordova platform add android
-bash ../scripts/build-cordova.sh   # 🎉 APK on Desktop
-```
+Then in Hermes: *"Build a calculator app with dark theme"*
 
 > **No Android Studio. No Gradle config. No Firebase setup tutorials. Just working code.**
 
@@ -220,9 +208,9 @@ bash CreateDroid/scripts/build-cordova.sh
 
 ---
 
-## 📈 Growth Engine (Self-Tracking)
+## 📈 Growth Engine (Hermes Cron — Self-Tracking)
 
-CreateDroid tracks its own growth. Every week, an automated report is generated:
+CreateDroid tracks its own growth via Hermes' cron system. Every Sunday, a self-evolving report is delivered to your Telegram:
 
 - ⭐ Star count & weekly delta
 - 🍴 Fork count
@@ -230,7 +218,7 @@ CreateDroid tracks its own growth. Every week, an automated report is generated:
 - 🔥 Top traffic sources & search keywords
 - 💡 Auto-suggestions for improvement
 
-The growth data is public in the repo. See it evolve in real-time.
+The growth engine learns — if a strategy isn't working, it adapts and tries something new.
 
 ---
 
